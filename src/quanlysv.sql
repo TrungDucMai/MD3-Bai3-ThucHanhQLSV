@@ -62,3 +62,24 @@ INSERT INTO Mark (SubId, StudentId, Mark, ExamTimes)
 VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);
+SELECT Address, COUNT(StudentId) AS 'Số lượng học viên'
+FROM Student
+GROUP BY Address;
+
+use quanlysinhvien;
+SELECT Address, COUNT(StudentId) AS 'Số lượng học viên'
+FROM Student
+GROUP BY Address;
+
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName;
+
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName;
+
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
